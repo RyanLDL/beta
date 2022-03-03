@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ASProject/beta/beta1-master/app/src/main/res/drawable/ps_image_placeholder.xml" value="0.1" />
+        <entry key="..\:/ASProject/beta/beta1-master/app/src/main/res/layout/fragment_publish.xml" value="0.33" />
+        <entry key="..\:/ASProject/beta/beta1-master/app/src/main/res/layout/item_picture.xml" value="0.22" />
         <entry key="..\:/ASProject/beta1/app/src/main/res/drawable/ic_dianzan.xml" value="0.2995" />
         <entry key="..\:/ASProject/beta1/app/src/main/res/drawable/ic_dianzan__1_.xml" value="0.2995" />
         <entry key="..\:/ASProject/beta1/app/src/main/res/layout/activity_main.xml" value="0.34739583333333335" />

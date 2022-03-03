@@ -1,3 +1,4 @@
+
 plugins {
     id 'com.android.application'
 }
@@ -29,9 +30,9 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
@@ -43,4 +44,20 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'xyz.doikki.android.dkplayer:videocache:3.3.5'
+
+//    // 如果想简化代码并且同时用到multilibrary和progresslibrary、albumCameraRecorderCommon,可以直接使用combined库
+//    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:combined:1.1.56X'
+
+    // 公共库，如果不使用上面的combined库
+    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:common:1.1.56X'
+    // 核心lib，调用显示相册、录屏、录音等
+    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:multilibrary:1.1.56X'
+    // 配套使用，主要用于获取数据后进行相关显示，相应的上传进度显示，如果你只需要获取照片录像录音等数据，可以不需要使用这个
+    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:progresslibrary:1.1.56X'
+
+    // 配套编辑图片使用
+    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:imageedit:1.1.56X'
+    // 配套编辑视频使用
+    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:videoedit:1.1.56X'
+
 }
