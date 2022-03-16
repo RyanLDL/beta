@@ -30,17 +30,17 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.home:
-                    getSupportFragmentManager().beginTransaction().addToBackStack("first")
+                    getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentContainerView,BlankFragment.class,null)
                             .commit();
                     return true;
                 case R.id.publish:
-                    getSupportFragmentManager().beginTransaction().addToBackStack("first")
+                    getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentContainerView,PublishFragment.class,null)
                             .commit();
                     return true;
                 case R.id.mine:
-                    getSupportFragmentManager().beginTransaction().addToBackStack("first")
+                    getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragmentContainerView,MineFragment.class,null)
                             .commit();
                     return true;

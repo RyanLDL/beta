@@ -19,23 +19,17 @@ public class PreloadManager {
 
     private static final String TAG = "TAG";
     private static PreloadManager sPreloadManager;
-
     /**
-     * 单线程池，按照添加顺序依次执行{@link PreloadTask}
+     * 保存正在预加载的
      */
-    private ExecutorService mExecutorService = Executors.newSingleThreadExecutor();
-
-    /**
-     * 保存正在预加载的{@link PreloadTask}
-     */
-    private LinkedHashMap<String, PreloadTask> mPreloadTasks = new LinkedHashMap<>();
+    private LinkedHashMap<String, OkHttp> mPreloadTasks = new LinkedHashMap<>();
 
     /**
      * 标识是否需要预加载
      */
     private boolean mIsStartPreload = true;
 
-    private HttpProxyCacheServer mHttpProxyCacheServer;
+    private HttpProxyCacheServer mHttpProxyCacheServer;//代理服务器;
 
     /**
      * 预加载的大小，每个视频预加载1M，这个参数可根据实际情况调整
@@ -64,16 +58,16 @@ public class PreloadManager {
      */
     public void addPreloadTask(String rawUrl, int position) {
         if (isPreloaded(rawUrl)) return;
-        PreloadTask task = new PreloadTask();
-        task.mRawUrl = rawUrl;
-        task.mPosition = position;
-        task.mCacheServer = mHttpProxyCacheServer;
+        OkHttp ok = new OkHttp();
+        ok.position = position;
+        ok.cacheServer = mHttpProxyCacheServer;
+        ok.rawUrl = rawUrl;
         Log.d(TAG,"addPreloadTask: " + position);
-        mPreloadTasks.put(rawUrl, task);
+        mPreloadTasks.put(rawUrl, ok);
 
         if (mIsStartPreload) {
             //开始预加载
-            task.executeOn(mExecutorService);
+            ok.start();
         }
     }
 
@@ -111,43 +105,15 @@ public class PreloadManager {
     public void pausePreload(int position, boolean isReverseScroll) {
         Log.d(TAG,"pausePreload：" + position + " isReverseScroll: " + isReverseScroll);
         mIsStartPreload = false;
-        for (Map.Entry<String, PreloadTask> next : mPreloadTasks.entrySet()) {
-            PreloadTask task = next.getValue();
+        for (Map.Entry<String, OkHttp> next : mPreloadTasks.entrySet()) {
+            OkHttp task = next.getValue();
             if (isReverseScroll) {
-                if (task.mPosition >= position) {
+                if (task.position >= position) {
                     task.cancel();
                 }
             } else {
-                if (task.mPosition <= position) {
+                if (task.position <= position) {
                     task.cancel();
-                }
-            }
-        }
-    }
-
-    /**
-     * 恢复预加载
-     * 根据是否反向滑动开始在position之下或之上的PreloadTask
-     *
-     * @param position        当前滑到的位置
-     * @param isReverseScroll 列表是否反向滑动
-     */
-    public void resumePreload(int position, boolean isReverseScroll) {
-        Log.d(TAG,"resumePreload：" + position + " isReverseScroll: " + isReverseScroll);
-        mIsStartPreload = true;
-        for (Map.Entry<String, PreloadTask> next : mPreloadTasks.entrySet()) {
-            PreloadTask task = next.getValue();
-            if (isReverseScroll) {
-                if (task.mPosition < position) {
-                    if (!isPreloaded(task.mRawUrl)) {
-                        task.executeOn(mExecutorService);
-                    }
-                }
-            } else {
-                if (task.mPosition > position) {
-                    if (!isPreloaded(task.mRawUrl)) {
-                        task.executeOn(mExecutorService);
-                    }
                 }
             }
         }
@@ -159,7 +125,7 @@ public class PreloadManager {
      * @param rawUrl 原始地址
      */
     public void removePreloadTask(String rawUrl) {
-        PreloadTask task = mPreloadTasks.get(rawUrl);
+        OkHttp task = mPreloadTasks.get(rawUrl);
         if (task != null) {
             task.cancel();
             mPreloadTasks.remove(rawUrl);
@@ -170,10 +136,10 @@ public class PreloadManager {
      * 取消所有的预加载
      */
     public void removeAllPreloadTask() {
-        Iterator<Map.Entry<String, PreloadTask>> iterator = mPreloadTasks.entrySet().iterator();
+        Iterator<Map.Entry<String, OkHttp>> iterator = mPreloadTasks.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry<String, PreloadTask> next = iterator.next();
-            PreloadTask task = next.getValue();
+            Map.Entry<String, OkHttp> next = iterator.next();
+            OkHttp task = next.getValue();
             task.cancel();
             iterator.remove();
         }
@@ -183,7 +149,7 @@ public class PreloadManager {
      * 获取播放地址
      */
     public String getPlayUrl(String rawUrl) {
-        PreloadTask task = mPreloadTasks.get(rawUrl);
+        OkHttp task = mPreloadTasks.get(rawUrl);
         if (task != null) {
             task.cancel();
         }

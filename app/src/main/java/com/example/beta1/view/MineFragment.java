@@ -12,7 +12,7 @@ import com.example.beta1.R;
 
 
 public class MineFragment extends Fragment {
-
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,9 @@ public class MineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mine, container, false);
+        if (view == null) {
+            view = inflater.inflate(R.layout.fragment_mine,container,false);
+        }
+        return view;
     }
 }

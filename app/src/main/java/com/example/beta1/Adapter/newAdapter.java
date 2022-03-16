@@ -42,9 +42,11 @@ public class newAdapter extends RecyclerView.Adapter<newAdapter.Holder> {
         Log.d(TAG, "onBindViewHolder: ");
 
         TiktokBean bean=videoBeans.get(position);
+        TiktokBean bean1=videoBeans.get(position+1);
         Glide.with(holder.videoView.getContext()).load(bean.coverImgUrl).into(holder.videoView.posterImageView);
         holder.mPsition = position;
         PreloadManager.getInstance(holder.itemView.getContext()).addPreloadTask(bean.videoDownloadUrl,position);
+        PreloadManager.getInstance(holder.itemView.getContext()).addPreloadTask(bean1.videoDownloadUrl,position+1);
 
 
     }

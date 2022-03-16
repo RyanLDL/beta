@@ -30,7 +30,6 @@ public class BlankFragment extends Fragment {
    private newAdapter ad;
    private List<TiktokBean> videoList=new ArrayList<>();
    private View view;
-   private int index;
    private int currentPosition;
    private MyLayoutManager lm;
 
@@ -63,7 +62,6 @@ public class BlankFragment extends Fragment {
         rv = view.findViewById(R.id.rv);
 
         ad=new newAdapter(videoList);
-
         lm=new MyLayoutManager(getContext(), OrientationHelper.VERTICAL,false);
 
         rv.setLayoutManager(lm);
@@ -111,6 +109,12 @@ public class BlankFragment extends Fragment {
     private void addData(View view){
         videoList.addAll(DataUtil.getTiktokDataFromAssets(getContext()));
         ad.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
     }
 
 }

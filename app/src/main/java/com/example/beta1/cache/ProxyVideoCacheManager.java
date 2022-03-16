@@ -9,7 +9,7 @@ import java.io.File;
 
 public class ProxyVideoCacheManager {
 
-    private static HttpProxyCacheServer sharedProxy;
+    private static HttpProxyCacheServer sharedProxy;//代理缓存服务器
 
     private ProxyVideoCacheManager() {
     }

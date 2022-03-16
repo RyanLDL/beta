@@ -6,21 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".view.PublishFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:cropToPadding="false"
-            />
-    </LinearLayout>
+            android:orientation="vertical">
 
+           <com.zhongjh.progresslibrary.widget.MaskProgressLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/img"
+               app:audioPlayColor="@color/blue_primary"
+               app:audioProgressColor="@color/blue_primary"
+               app:audioDeleteColor="@color/blue_primary"
+               app:authority="com.example.beta.fileprovider"
+               app:columnNumber="4"
+               app:columnSpace="10"
+               app:imageAddDrawable="@drawable/ic_add"
+               app:imageDeleteDrawable="@drawable/ic_delete"
+               app:imageEngine="com.example.beta1.tool.Glide4EngineProgress"
+               app:maskingColor="?attr/colorPrimary"
+               app:maskingTextColor="@color/black_eighty_percent"
+               app:maskingTextContent="jajaja"
+               app:maskingTextSize="12"
+               app:maxCount="12"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

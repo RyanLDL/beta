@@ -46,7 +46,7 @@ dependencies {
     implementation 'xyz.doikki.android.dkplayer:videocache:3.3.5'
 
 //    // 如果想简化代码并且同时用到multilibrary和progresslibrary、albumCameraRecorderCommon,可以直接使用combined库
-//    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:combined:1.1.56X'
+    implementation 'com.github.zhongjhATC.AlbumCameraRecorder:combined:1.1.56X'
 
     // 公共库，如果不使用上面的combined库
     implementation 'com.github.zhongjhATC.AlbumCameraRecorder:common:1.1.56X'
@@ -59,5 +59,6 @@ dependencies {
     implementation 'com.github.zhongjhATC.AlbumCameraRecorder:imageedit:1.1.56X'
     // 配套编辑视频使用
     implementation 'com.github.zhongjhATC.AlbumCameraRecorder:videoedit:1.1.56X'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
 
 }

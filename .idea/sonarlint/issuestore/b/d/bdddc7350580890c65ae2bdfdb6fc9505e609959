@@ -1,8 +1,0 @@
-
-J
-java:S3740"/Provide the parametrized type for this generic.(àéê¬üÿÿÿÿ
-œ
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(É½²ûúÿÿÿÿ
-t
-java:S1171#"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(†Íñ»þÿÿÿÿ
