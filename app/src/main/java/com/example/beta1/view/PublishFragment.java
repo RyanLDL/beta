@@ -82,14 +82,16 @@ public class PublishFragment extends Fragment {
         globalSetting
                 .allStrategy(new SaveStrategy(true,"com.example.beta1.fileprovider","beta"))
                 .imageEngine(new Glide4Engine())
-                .maxSelectablePerMediaType(null,5,3,0,0,0,0)
+                .maxSelectablePerMediaType(null,5,3,
+                        0,0,0,0)
                 .forResult(236);
-        combined = new Combined(getActivity(),236,globalSetting,maskProgressLayout,new AbstractMaskProgressLayoutListener(){
+        combined = new Combined(getActivity(),236,globalSetting,maskProgressLayout,
+                new AbstractMaskProgressLayoutListener(){
             @Override
             public void onItemStartUploading(@NotNull MultiMediaView multiMediaView) {
                 super.onItemStartUploading(multiMediaView);
                 Log.d("onItemStartUploading", "onItemStartUploading");
-                // 开始模拟上传 - 指刚添加后的。这里可以使用你自己的上传事件
+                // 开始模拟上传
                 MyTask timer = new MyTask(multiMediaView);
                 timers.put(multiMediaView, timer);
                 timer.schedule();

@@ -21,14 +21,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="name"
-            android:textSize="34sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="content"
-            android:textSize="24sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -36,16 +36,29 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|right"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+<!--        <TextView-->
+<!--            android:id="@+id/like"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:drawableTop="@drawable/dianzan"-->
+<!--            android:gravity="center"-->
+<!--            android:text="1"-->
+<!--            android:textSize="20sp" />-->
+        <ImageButton
+            android:id="@+id/imagebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dianzan_1"
+            android:background="#00000000" />
 
         <TextView
             android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/ic_dianzan__1_"
-            android:gravity="center"
             android:text="1"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 </FrameLayout>

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,7 +44,10 @@ public class newAdapter extends RecyclerView.Adapter<newAdapter.Holder> {
 
         TiktokBean bean=videoBeans.get(position);
         TiktokBean bean1=videoBeans.get(position+1);
-        Glide.with(holder.videoView.getContext()).load(bean.coverImgUrl).into(holder.videoView.posterImageView);
+        Glide.with(holder.videoView.getContext()).load(bean.coverImgUrl).centerCrop().into(holder.videoView.posterImageView);
+        holder.name.setText(bean.authorName);
+        holder.title.setText(bean.title);
+//        holder.like.setText(bean.likeCount);
         holder.mPsition = position;
         PreloadManager.getInstance(holder.itemView.getContext()).addPreloadTask(bean.videoDownloadUrl,position);
         PreloadManager.getInstance(holder.itemView.getContext()).addPreloadTask(bean1.videoDownloadUrl,position+1);
@@ -64,16 +68,39 @@ public class newAdapter extends RecyclerView.Adapter<newAdapter.Holder> {
     }
 
     public class Holder extends RecyclerView.ViewHolder{
+        private boolean isgood = false;
         private VideoView videoView;
-        private TextView title,like,name;
+        private TextView title,name,like;
+        private ImageButton imageButton;
         int mPsition;
         public Holder(@NonNull View itemView) {
             super(itemView);
+
             videoView=itemView.findViewById(R.id.videoview);
             title=itemView.findViewById(R.id.content);
             name=itemView.findViewById(R.id.name);
+            like = itemView.findViewById(R.id.like);
+            imageButton = itemView.findViewById(R.id.imagebtn);
+            imageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!isgood){
+                        imageButton.setImageResource(R.drawable.ic_dianzan);
+                        Integer num=Integer.parseInt(like.getText().toString());
+                        int a = num.intValue();
+                        Log.d(TAG, "onClick: "+(a+1));
+                        like.setText(String.valueOf(a+1));
+                        isgood = true;
+                    }else {
+                        imageButton.setImageResource(R.drawable.ic_dianzan_1);
+                        Integer num = Integer.parseInt(like.getText().toString());
+                        int a = num.intValue();
+                        like.setText(String.valueOf(a-1));
+                        isgood = false;
+                    }
+                }
+            });
 
-            like=itemView.findViewById(R.id.like);
         }
     }
 }

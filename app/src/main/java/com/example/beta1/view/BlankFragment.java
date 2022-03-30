@@ -68,7 +68,7 @@ public class BlankFragment extends Fragment {
 
         rv.setAdapter(ad);
 
-        lm.setListener(new OnViewPagerListener() {
+        lm.setListener(new MyListener() {
             @Override
             public void onInitComplete() {
                 startPlay(0);

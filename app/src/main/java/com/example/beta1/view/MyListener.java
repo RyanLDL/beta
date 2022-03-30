@@ -1,6 +1,6 @@
 package com.example.beta1.view;
 
-public interface OnViewPagerListener {
+public interface MyListener {
     /*初始化完成*/
     void onInitComplete();
 

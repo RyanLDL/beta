@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.beta1.R;
+import com.example.beta1.cache.PreloadManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,5 +50,11 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        PreloadManager.getInstance(getApplicationContext()).removeAllPreloadTask();
     }
 }

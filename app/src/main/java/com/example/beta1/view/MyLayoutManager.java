@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MyLayoutManager extends LinearLayoutManager {
     private PagerSnapHelper pagerSnapHelper;//用于辅助recylerview完成对齐
-    private OnViewPagerListener listener;
+    private MyListener listener;
     private RecyclerView rv;
     private int mDrift;//位移，用来判断位移方向
     private RecyclerView.OnChildAttachStateChangeListener mlistener=new RecyclerView.OnChildAttachStateChangeListener() {//可以附加到 RecyclerView 的监听器，以便在 ViewHolder 附加到 RecyclerView 或从 RecyclerView 分离时得到通知。
@@ -56,12 +56,6 @@ public class MyLayoutManager extends LinearLayoutManager {
         rv.addOnChildAttachStateChangeListener(mlistener);
     }
 
-    //布置给定适配器的所有相关子视图。
-//    @Override
-//    public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-//        super.onLayoutChildren(recycler, state);
-//    }
-
     //当滑动状态改变时
     //缓慢拖拽-> SCROLL_STATE_DRAGGING
     //快速滚动-> SCROLL_STATE_SETTLING
@@ -97,7 +91,7 @@ public class MyLayoutManager extends LinearLayoutManager {
     }
 
     //设置监听
-    public void setListener(OnViewPagerListener listener){
+    public void setListener(MyListener listener){
         this.listener = listener;
     }
 }

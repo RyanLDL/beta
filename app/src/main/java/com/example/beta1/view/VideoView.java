@@ -97,4 +97,5 @@ public class VideoView extends JzvdStd {
             replayTextView.setVisibility(GONE);
         }
     }
+
 }
